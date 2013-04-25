@@ -44,6 +44,10 @@ class LinksController < ApplicationController
     redirect_to links_url, :notice => "Successfully destroyed link."
   end
 
+  def recent
+    @links = Link.all
+  end
+
   private
   
   def sort_column

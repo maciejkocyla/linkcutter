@@ -2,3 +2,21 @@
 
 = render 'form'
 
+%h3
+  How to make it shorter?
+%p
+  To shorten your link simply paste it into "full url address", and make up a name for it in field above
+%h3
+  Other features
+%p
+  \- You can see the list of all already made links
+  = link_to "here", links_path
+%p
+  \- see recently created links
+  =link_to "here", recent_path
+
+%p 
+  \-or search if link You're thinking of already exists(
+  =link_to "here as well", links_path
+  )
+

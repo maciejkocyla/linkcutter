@@ -1,0 +1,7 @@
+- title 'Recent links'
+-@links.sort{|a,b| b.created_at <=> a.created_at}[0..4].each do |link|
+  %h3
+    =link_to link.short_url, link.full_url
+  %br
+
+  

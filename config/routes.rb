@@ -7,6 +7,8 @@ Linkcutter::Application.routes.draw do
     match link.short_url => redirect(link.full_url)
   end
 
+  match 'recent' => 'links#recent'
+
 
 
 

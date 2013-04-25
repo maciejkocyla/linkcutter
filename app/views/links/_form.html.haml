@@ -2,8 +2,8 @@
 = form_for @link do |f|
   = f.error_messages
   %p
-    = f.label :short_url, "your short path"
-    = f.text_field :short_url, :value => "#{request.env['HTTP_HOST']}/<things you write here>", :onfocus => 'this.value = ""'
+    = f.label :short_url, "#{request.env['HTTP_HOST']}/"
+    = f.text_field :short_url, :value => "short link", :onfocus => 'this.value = ""'
   %p
     = f.label :full_url, "full url address"
     = f.text_field :full_url, :value => "full url", :onfocus => 'this.value = ""'
