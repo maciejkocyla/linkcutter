@@ -1,4 +1,6 @@
 class LinksController < ApplicationController
+  require "net/http"
+
   def index
     @links = Link.all
   end
@@ -13,6 +15,7 @@ class LinksController < ApplicationController
 
   def create
     @link = Link.new(params[:link])
+        
     if @link.save
       redirect_to @link, :notice => "Successfully created link."
     else
@@ -38,4 +41,5 @@ class LinksController < ApplicationController
     @link.destroy
     redirect_to links_url, :notice => "Successfully destroyed link."
   end
-end
+
+  end

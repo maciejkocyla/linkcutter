@@ -5,7 +5,7 @@
   = @link.short_url
 %p
   %strong Full Url:
-  = @link.full_url
+  = link_to @link.full_url, @link.full_url.to_s
 
 %p
   = link_to "Edit", edit_link_path(@link)

@@ -1,0 +1,7 @@
+.error_msgs
+- if @link.errors.any?
+  This is just wrong:
+  %ul
+    - @link.errors.full_messages.each do |msg|
+      %li
+        =msg

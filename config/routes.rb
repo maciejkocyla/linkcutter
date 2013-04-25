@@ -1,39 +1,41 @@
 Linkcutter::Application.routes.draw do
 
-root :to => 'links#new'
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   resources :links
+  root :to => 'links#new'
+
+  Link.all.each do |link|
+    match link.short_url => redirect(link.full_url), method: 'post'
+  end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
