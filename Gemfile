@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.11'
-gem 'nifty-generators'
+gem 'nifty-generators', '>= 0.4.0'
 gem 'jquery-rails'
 gem 'haml-rails'
 
@@ -43,3 +43,5 @@ end
 
 # To use debugger
 # gem 'debugger'
+
+gem "mocha", :group => :test

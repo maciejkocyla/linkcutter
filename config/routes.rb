@@ -1,6 +1,6 @@
 Linkcutter::Application.routes.draw do
 
-  root :to => 
+root :to => 'links#new'
 
 
 
@@ -33,6 +33,7 @@ Linkcutter::Application.routes.draw do
 
 
 
+  resources :links
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

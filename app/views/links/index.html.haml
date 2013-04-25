@@ -1,0 +1,15 @@
+- title "Links"
+
+%table
+  %tr
+    %th Short url
+    %th Full url
+  - for link in @links
+    %tr
+      %td= link.short_url
+      %td= link.full_url
+      %td= link_to 'Show', link
+      %td= link_to 'Edit', edit_link_path(link)
+      %td= link_to 'Destroy', link, :confirm => 'Are you sure?', :method => :delete
+
+%p= link_to "New Link", new_link_path

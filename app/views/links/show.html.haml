@@ -1,0 +1,15 @@
+- title "Link"
+
+%p
+  %strong Short Url:
+  = @link.short_url
+%p
+  %strong Full Url:
+  = @link.full_url
+
+%p
+  = link_to "Edit", edit_link_path(@link)
+  |
+  = link_to "Destroy", @link, :confirm => 'Are you sure?', :method => :delete
+  |
+  = link_to "View All", links_path
