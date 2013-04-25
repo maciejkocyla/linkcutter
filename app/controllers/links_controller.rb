@@ -1,8 +1,10 @@
 class LinksController < ApplicationController
   require "net/http"
 
+  helper_method :sort_column, :sort_direction
+
   def index
-    @links = Link.all
+    @links = Link.search(params[:search]).order(sort_column + " " + sort_direction).paginate(:per_page => 10, :page => params[:page])
   end
 
   def show
@@ -42,4 +44,14 @@ class LinksController < ApplicationController
     redirect_to links_url, :notice => "Successfully destroyed link."
   end
 
+  private
+  
+  def sort_column
+    Link.column_names.include?(params[:sort]) ? params[:sort] : "short_url"
   end
+  
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+  end
+
+end

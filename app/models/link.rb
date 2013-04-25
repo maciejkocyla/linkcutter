@@ -13,5 +13,12 @@ class Link < ActiveRecord::Base
     Rails.application.reload_routes!
   end
 
+  def self.search(search)
+    if search
+      where('full_url LIKE ?', "%#{search}%")
+    else
+      scoped
+    end
+  end
   
 end

@@ -4,7 +4,7 @@ Linkcutter::Application.routes.draw do
   root :to => 'links#new'
 
   Link.all.each do |link|
-    match link.short_url => redirect(link.full_url), method: 'post'
+    match link.short_url => redirect(link.full_url)
   end
 
 

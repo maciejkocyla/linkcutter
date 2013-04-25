@@ -4,6 +4,7 @@ gem 'rails', '3.2.11'
 gem 'nifty-generators', '>= 0.4.0'
 gem 'jquery-rails'
 gem 'haml-rails'
+gem 'will_paginate', '>= 3.0.2'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

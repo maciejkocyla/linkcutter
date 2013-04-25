@@ -1,15 +1,13 @@
 - title "Links"
 
-%table
-  %tr
-    %th Short url
-    %th Full url
-  - for link in @links
-    %tr
-      %td= link.short_url
-      %td= link.full_url
-      %td= link_to 'Show', link
-      %td= link_to 'Edit', edit_link_path(link)
-      %td= link_to 'Destroy', link, :confirm => 'Are you sure?', :method => :delete
+= form_tag links_path, :method => 'get' do
 
-%p= link_to "New Link", new_link_path
+  = hidden_field_tag :direction, params[:direction]
+  = hidden_field_tag :sort, params[:sort]
+  = text_field_tag "search", params[:search]
+  = submit_tag "search", :full_url => nil
+
+#links
+  = render 'links'
+%p
+  = link_to "New Link", new_link_path 
