@@ -4,9 +4,6 @@ class Link < ActiveRecord::Base
 
   VALID_URL = /https?:\/\/[\S]+/ 
 
-  after_save :rebuild_routes
-  after_destroy :rebuild_routes
-
   validates :short_url, presence: true, uniqueness: true
   validates :full_url, presence: true, format: { with: VALID_URL}
   validate :working_link

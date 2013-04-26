@@ -1,11 +1,12 @@
 .form_for_links
 = form_for @link do |f|
-  = f.error_messages
-  %p
-    = f.label :short_url, "#{request.env['HTTP_HOST']}/"
-    = f.text_field :short_url, :value => "short link", :onfocus => 'this.value = ""'
-  %p
-    = f.label :full_url, "full url address"
-    = f.text_field :full_url, :value => "full url", :onfocus => 'this.value = ""'
-  %p
-    = f.submit
+  %table
+    = f.error_messages
+    %tr
+      %th= f.label :short_url, "#{request.env['HTTP_HOST']}/"
+      %td= f.text_field :short_url, :value => "short link", :onfocus => 'this.value = ""'
+    %tr
+      %th= f.label :full_url, "full url address"
+      %td= f.text_field :full_url, :value => "full url", :onfocus => 'this.value = ""'
+    %th
+      = f.submit
