@@ -3,12 +3,8 @@ Linkcutter::Application.routes.draw do
   resources :links
   root :to => 'links#new'
 
-  Link.all.each do |link|
-    match link.short_url => redirect(link.full_url)
-  end
-
   match 'recent' => 'links#recent'
-
+  match '/:short_url' => 'links#redirect'
 
 
 

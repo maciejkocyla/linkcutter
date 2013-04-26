@@ -48,6 +48,12 @@ class LinksController < ApplicationController
     @links = Link.all
   end
 
+  def redirect
+    @link = Link.find_by_short_url(params[:short_url])
+    redirect_to @link.full_url
+
+  end
+
   private
   
   def sort_column
