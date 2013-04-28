@@ -1,13 +1,14 @@
 class Link < ActiveRecord::Base
   require 'open-uri'
+  require 'net/http'
   attr_accessible :short_url, :full_url
 
   VALID_URL = /https?:\/\/[\S]+/ 
   VALID_SHORT_URL =  /^[A-Za-z\d_]+$/
+  SELF_URL = /[https?]?localhost:3000[\/\w+\d*]?/
 
-  validates :short_url, presence: true, uniqueness: true 
-  validates :short_url, format: {with: VALID_SHORT_URL, :message => "Can only be alphanumeric"}
-  validates :full_url, presence: true, format: { with: VALID_URL}
+  validates :short_url, format: {with: VALID_SHORT_URL, :message => "Can only be alphanumeric"}, uniqueness: true, :if => :validate_short_url 
+  validates :full_url, presence: true, format: { with: VALID_URL}, uniqueness: true
   validate :working_link
 
  
@@ -21,12 +22,23 @@ class Link < ActiveRecord::Base
 
   def working_link
     begin
-      url = self.full_url
-      open(url)
+      if self.full_url =~ SELF_URL
+        errors.add(:full_url, "cannot be me")
+      else
+        url = self.full_url
+        open(url)
+      end
     rescue 
       errors.add(:full_url, "You typed or pasted leads to nowhere")    
     end
-    
+  end
+
+  def validate_short_url
+    if !self.short_url.blank? && self.short_url != "short_link" 
+      true
+    else
+      false
+    end
   end
   
 end

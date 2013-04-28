@@ -16,8 +16,12 @@ class LinksController < ApplicationController
   end
 
   def create
+    if params[:link][:short_url] == "short link" || params[:link][:short_url].blank?
+      begin
+        params[:link][:short_url] = (0...8).map{(65+rand(26)).chr}.join
+      end while !is_unique(params[:link][:short_url])
+    end
     @link = Link.new(params[:link])
-        
     if @link.save
       redirect_to @link, :notice => "Successfully created link."
     else
@@ -62,6 +66,12 @@ class LinksController < ApplicationController
   
   def sort_direction
     %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+  end
+
+  def is_unique(short)
+    Link.all.each do |link|
+      return false if link.short_url == short
+    end
   end
 
 end
