@@ -22,8 +22,10 @@ class Link < ActiveRecord::Base
 
   def working_link
     begin
-      if self.full_url =~ SELF_URL || self.full_url =~ /links?/
+      if self.full_url =~ SELF_URL
         errors.add(:full_url, "of this kind cannot be used")
+      elsif self.short_url =~ /links?/
+        errors.add(:short_url, "like this is forbidden")
       else
         url = self.full_url
         open(url)
