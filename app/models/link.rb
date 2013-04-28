@@ -22,8 +22,8 @@ class Link < ActiveRecord::Base
 
   def working_link
     begin
-      if self.full_url =~ SELF_URL
-        errors.add(:full_url, "cannot be me")
+      if self.full_url =~ SELF_URL || self.full_url == "links"
+        errors.add(:full_url, "of this kind cannot be used")
       else
         url = self.full_url
         open(url)
